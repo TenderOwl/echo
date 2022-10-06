@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 
 class RequestView extends StatefulWidget {
@@ -26,59 +27,93 @@ class RequestViewState extends State<RequestView> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          decoration: const BoxDecoration(
-            border: Border(
-              bottom: BorderSide(width: 1, color: Colors.grey),
+    return DefaultTabController(
+      length: 4,
+      child: Column(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(width: 1, color: Colors.grey),
+              ),
+            ),
+            child: Row(
+              children: [
+                DropdownButton<String>(
+                  value: selectedMethod,
+                  selectedItemBuilder: (context) => requestMethods
+                      .map((e) => Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Text(e['name']!),
+                          ))
+                      .toList(),
+                  items: requestMethods
+                      .map((e) => DropdownMenuItem<String>(
+                            value: e['value'],
+                            child: Text(e['name']!),
+                          ))
+                      .toList(),
+                  onChanged: (value) => setState(() {
+                    selectedMethod = value;
+                  }),
+                  isDense: true,
+                  underline: Container(),
+                ),
+                Expanded(
+                  child: TextField(
+                    controller: urlController,
+                    decoration: const InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(horizontal: 8),
+                      isDense: true,
+                      border: InputBorder.none,
+                      hintText: 'https://api.example.com/v1/users',
+                    ),
+                    onSubmitted: (_) => sendRequest(),
+                  ),
+                ),
+                SizedBox(
+                  width: 90,
+                  height: 36,
+                  child: MaterialButton(
+                    onPressed: sendRequest,
+                    color: Theme.of(context).primaryColor,
+                    elevation: 0,
+                    hoverElevation: 0,
+                    child: const Text('Send'),
+                  ),
+                )
+              ],
             ),
           ),
-          child: Row(
-            children: [
-              DropdownButton<String>(
-                value: selectedMethod,
-                items: requestMethods
-                    .map((e) => DropdownMenuItem<String>(
-                          value: e['value'],
-                          child: Text(e['name']!),
-                        ))
-                    .toList(),
-                onChanged: (value) => setState(() {
-                  selectedMethod = value;
-                }),
-                underline: Container(),
+          const TabBar(
+            padding: EdgeInsets.zero,
+            tabs: [
+              Tab(
+                child: Text('Body', overflow: TextOverflow.ellipsis),
               ),
-              Expanded(
-                child: TextField(
-                  controller: urlController,
-                  decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 8),
-                    isDense: true,
-                    border: InputBorder.none,
-                    hintText: 'https://api.example.com/v1/users',
-                  ),
-                  onSubmitted: (_) => sendRequest(),
-                ),
+              Tab(
+                child: Text('Auth', overflow: TextOverflow.ellipsis),
               ),
-              SizedBox(
-                width: 90,
-                height: 46,
-                child: MaterialButton(
-                  onPressed: sendRequest,
-                  color: Theme.of(context).primaryColor,
-                  elevation: 0,
-                  hoverElevation: 0,
-                  child: const Text('Send'),
-                ),
-              )
+              Tab(
+                child: Text('Query', overflow: TextOverflow.ellipsis),
+              ),
+              Tab(
+                child: Text('Headers', overflow: TextOverflow.ellipsis),
+              ),
             ],
           ),
-        ),
-        const Expanded(
-          child: Center(child: Text('Request settings')),
-        )
-      ],
+          const Expanded(
+            child: TabBarView(
+              children: [
+                Icon(LineIcons.paragraph),
+                Icon(LineIcons.lockOpen),
+                Icon(LineIcons.link),
+                Icon(LineIcons.alternateList),
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 

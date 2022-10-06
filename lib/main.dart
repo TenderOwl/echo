@@ -16,8 +16,9 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blueGrey,
-          textTheme: GoogleFonts.montserratTextTheme(),
-          primaryColor: Color.fromARGB(255, 20, 84, 104),
+          textTheme: GoogleFonts.ibmPlexSansTextTheme(),
+          // primaryColor: Color.fromARGB(255, 20, 84, 104),
+          colorScheme: ColorScheme.dark(),
         ),
         debugShowCheckedModeBanner: false,
         home: const AppLayout());
