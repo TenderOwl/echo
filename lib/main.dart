@@ -1,5 +1,6 @@
 import 'package:echo/src/layouts/app_layout.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-            primarySwatch: Colors.blueGrey, colorScheme: ColorScheme.dark()),
+          primarySwatch: Colors.blueGrey,
+          textTheme: GoogleFonts.montserratTextTheme(),
+          primaryColor: Color.fromARGB(255, 20, 84, 104),
+        ),
         debugShowCheckedModeBanner: false,
         home: const AppLayout());
   }
