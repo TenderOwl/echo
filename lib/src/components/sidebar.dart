@@ -65,9 +65,14 @@ class _SidebarViewState extends State<SidebarView> {
                               fontWeight: FontWeight.normal),
                         ),
                         const SizedBox(width: 8),
-                        Text(
-                          item.title,
-                          style: const TextStyle(fontWeight: FontWeight.normal),
+                        Expanded(
+                          child: Text(
+                            item.title,
+                            overflow: TextOverflow.fade,
+                            softWrap: false,
+                            style:
+                                const TextStyle(fontWeight: FontWeight.normal),
+                          ),
                         )
                       ],
                     ),
