@@ -2,6 +2,7 @@ class Endpoint {
   String? id;
   String title;
   Uri? url;
+  String method;
   Map<String, dynamic> headers = {};
   Map<String, dynamic> queryParameters = {};
 
@@ -9,6 +10,7 @@ class Endpoint {
     this.title, {
     String? url,
     this.id,
+    this.method = 'GET',
   }) {
     if (url != null) seturl(url);
   }
