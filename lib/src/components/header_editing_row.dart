@@ -6,7 +6,7 @@ class HeaderEditingRow extends StatefulWidget {
   final Map<String, String> header;
   final VoidCallback onAdd;
   final void Function(int, bool) onToggle;
-  final void Function(int) onRemove;
+  final void Function(int)? onRemove;
 
   const HeaderEditingRow({
     super.key,
@@ -14,7 +14,7 @@ class HeaderEditingRow extends StatefulWidget {
     required this.header,
     required this.onAdd,
     required this.onToggle,
-    required this.onRemove,
+    this.onRemove,
   });
 
   @override
@@ -81,7 +81,9 @@ class _HeaderEditingRowState extends State<HeaderEditingRow> {
               splashRadius: 12,
             ),
             IconButton(
-              onPressed: () => widget.onRemove(widget.index),
+              onPressed: widget.onRemove != null
+                  ? () => widget.onRemove!(widget.index)
+                  : null,
               icon: const Icon(LineIcons.trash, size: 16),
               padding: EdgeInsets.zero,
               visualDensity: VisualDensity.compact,

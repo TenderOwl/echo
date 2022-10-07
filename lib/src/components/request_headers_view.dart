@@ -31,7 +31,7 @@ class _RequestHeadersViewState extends State<RequestHeadersView> {
             header: headers[index],
             onAdd: addHeader,
             onToggle: toggleHeader,
-            onRemove: removeHeader,
+            onRemove: index > 0 ? removeHeader : null,
           );
         },
       ),
