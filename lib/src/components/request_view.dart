@@ -1,5 +1,5 @@
+import 'package:echo/src/components/request_headers_view.dart';
 import 'package:flutter/material.dart';
-import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 
 class RequestView extends StatefulWidget {
@@ -32,9 +32,13 @@ class RequestViewState extends State<RequestView> {
       child: Column(
         children: [
           Container(
-            decoration: const BoxDecoration(
+            height: 36,
+            decoration: BoxDecoration(
               border: Border(
-                bottom: BorderSide(width: 1, color: Colors.grey),
+                bottom: BorderSide(
+                  width: 1,
+                  color: Theme.of(context).colorScheme.outline,
+                ),
               ),
             ),
             child: Row(
@@ -75,32 +79,57 @@ class RequestViewState extends State<RequestView> {
                   width: 90,
                   height: 36,
                   child: MaterialButton(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.zero),
+                    ),
                     onPressed: sendRequest,
-                    color: Theme.of(context).primaryColor,
-                    elevation: 0,
-                    hoverElevation: 0,
-                    child: const Text('Send'),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: const [
+                        Text('Send'),
+                        Icon(LineIcons.paperPlane),
+                      ],
+                    ),
                   ),
                 )
               ],
             ),
           ),
-          const TabBar(
-            padding: EdgeInsets.zero,
-            tabs: [
-              Tab(
-                child: Text('Body', overflow: TextOverflow.ellipsis),
+          Container(
+            height: 36,
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                    width: 1, color: Theme.of(context).colorScheme.outline),
               ),
-              Tab(
-                child: Text('Auth', overflow: TextOverflow.ellipsis),
+            ),
+            child: TabBar(
+              indicator: BoxDecoration(
+                color: Theme.of(context).colorScheme.primary,
               ),
-              Tab(
-                child: Text('Query', overflow: TextOverflow.ellipsis),
-              ),
-              Tab(
-                child: Text('Headers', overflow: TextOverflow.ellipsis),
-              ),
-            ],
+              tabs: const [
+                Tab(
+                  child: Text('Body',
+                      style: TextStyle(fontSize: 14),
+                      overflow: TextOverflow.ellipsis),
+                ),
+                Tab(
+                  child: Text('Auth',
+                      style: TextStyle(fontSize: 14),
+                      overflow: TextOverflow.ellipsis),
+                ),
+                Tab(
+                  child: Text('Query',
+                      style: TextStyle(fontSize: 14),
+                      overflow: TextOverflow.ellipsis),
+                ),
+                Tab(
+                  child: Text('Headers',
+                      style: TextStyle(fontSize: 14),
+                      overflow: TextOverflow.ellipsis),
+                ),
+              ],
+            ),
           ),
           const Expanded(
             child: TabBarView(
@@ -108,7 +137,7 @@ class RequestViewState extends State<RequestView> {
                 Icon(LineIcons.paragraph),
                 Icon(LineIcons.lockOpen),
                 Icon(LineIcons.link),
-                Icon(LineIcons.alternateList),
+                RequestHeadersView(),
               ],
             ),
           )

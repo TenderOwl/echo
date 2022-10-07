@@ -10,8 +10,8 @@ class SidebarView extends StatefulWidget {
 class _SidebarViewState extends State<SidebarView> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.purple,
+    return const Center(
+      child: Text('Sidebar'),
     );
   }
 }

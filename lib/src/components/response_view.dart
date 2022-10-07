@@ -10,8 +10,8 @@ class ResponseView extends StatefulWidget {
 class ResponseViewState extends State<ResponseView> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.green,
+    return const Center(
+      child: Text('Response'),
     );
   }
 }

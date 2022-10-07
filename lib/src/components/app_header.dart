@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
 
 class AppHeader extends StatelessWidget {
   const AppHeader({super.key});
@@ -9,7 +10,8 @@ class AppHeader extends StatelessWidget {
       // height: 48,
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide(width: 1, color: Color(0xff8f8f8f)),
+          bottom: BorderSide(
+              width: 1, color: Theme.of(context).colorScheme.outline),
         ),
       ),
       child: Padding(
@@ -19,23 +21,28 @@ class AppHeader extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(Icons.radar_outlined),
+                Icon(LineIcons.satelliteDish,
+                    color: Theme.of(context).colorScheme.primary),
                 SizedBox(width: 8),
-                Text('New Document'),
+                TextButton(
+                  onPressed: () {},
+                  child: Text('New project'),
+                ),
               ],
             ),
             Row(
               children: [
                 IconButton(
                   onPressed: () {},
-                  icon: Icon(Icons.settings),
+                  icon: Icon(LineIcons.cog),
                   visualDensity: VisualDensity.compact,
                   padding: EdgeInsets.zero,
                   splashRadius: 16,
                 ),
+                SizedBox(width: 8),
                 IconButton(
                   onPressed: () {},
-                  icon: Icon(Icons.person),
+                  icon: Icon(LineIcons.userCog),
                   visualDensity: VisualDensity.compact,
                   padding: EdgeInsets.zero,
                   splashRadius: 16,
