@@ -1,7 +1,10 @@
 import 'dart:math';
 
 import 'package:echo/src/models/endpoint.dart';
+import 'package:echo/src/models/endpoints_collection.dart';
+import 'package:echo/src/services/storage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 
 class SidebarView extends StatefulWidget {
@@ -12,8 +15,16 @@ class SidebarView extends StatefulWidget {
 }
 
 class _SidebarViewState extends State<SidebarView> {
-  List<Endpoint> endpoints = [];
+  List<EndpointsCollection>? endpointsCollections;
   Random rnd = Random();
+
+  EndpointsService endpointsService = Get.find();
+
+  @override
+  void initState() {
+    super.initState();
+    loadCollections();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +56,9 @@ class _SidebarViewState extends State<SidebarView> {
         ),
         Expanded(
           child: ListView.builder(
-            itemCount: endpoints.length,
+            itemCount: endpointsCollections?.length ?? 0,
             itemBuilder: (context, index) {
-              final item = endpoints[index];
+              final item = endpointsCollections?[index];
               return SizedBox(
                 height: 36,
                 child: Padding(
@@ -58,16 +69,16 @@ class _SidebarViewState extends State<SidebarView> {
                         borderRadius: BorderRadius.circular(6)),
                     child: Row(
                       children: [
-                        Text(
-                          item.method,
-                          style: TextStyle(
-                              color: getMethodColor(item.method),
-                              fontWeight: FontWeight.normal),
-                        ),
-                        const SizedBox(width: 8),
+                        // Text(
+                        //   item.method,
+                        //   style: TextStyle(
+                        //       color: getMethodColor(item.method),
+                        //       fontWeight: FontWeight.normal),
+                        // ),
+                        // const SizedBox(width: 8),
                         Expanded(
                           child: Text(
-                            item.title,
+                            item?.name ?? '--',
                             overflow: TextOverflow.fade,
                             softWrap: false,
                             style:
@@ -86,7 +97,7 @@ class _SidebarViewState extends State<SidebarView> {
     );
   }
 
-  void addEndpoint({String title = 'new request'}) {
+  void addEndpoint({String title = 'new request'}) async {
     final methods = [
       'GET',
       'POST',
@@ -98,8 +109,15 @@ class _SidebarViewState extends State<SidebarView> {
     ];
     final method = methods[rnd.nextInt(methods.length)];
 
+    await endpointsService
+        .addCollection(EndpointsCollection()..name = 'New Collection');
+
+    loadCollections();
+  }
+
+  void loadCollections() {
     setState(() {
-      endpoints.add(Endpoint(title, method: method));
+      endpointsCollections = endpointsService.getCollections();
     });
   }
 

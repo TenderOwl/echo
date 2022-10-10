@@ -11,10 +11,12 @@ class AppLayout extends StatelessWidget {
     return LayoutBuilder(
       builder: (BuildContext, BoxConstraints) {
         return Scaffold(
-          body: Column(children: [
-            AppHeader(),
-            AppView(),
-          ]),
+          body: SafeArea(
+            child: Column(children: [
+              AppHeader(),
+              AppView(),
+            ]),
+          ),
         );
       },
     );

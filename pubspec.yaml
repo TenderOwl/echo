@@ -34,13 +34,21 @@ dependencies:
 
   go_router: ^5.0.5
 
-  multi_split_view: ^2.1.0
   line_icons: ^2.0.1
   google_fonts: ^3.0.1
+  multi_split_view: ^2.1.0
+  flutter_tree: ^2.0.3
+
+  get: ^4.6.5
+  isar: ^3.0.2
+  isar_flutter_libs: ^3.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  isar_generator: ^3.0.2
+  build_runner: ^2.3.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

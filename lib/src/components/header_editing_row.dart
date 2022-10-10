@@ -46,11 +46,12 @@ class _HeaderEditingRowState extends State<HeaderEditingRow> {
             Expanded(
               child: TextField(
                 controller: nameController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   contentPadding: EdgeInsets.all(8),
                   isDense: true,
-                  border: InputBorder.none,
-                  filled: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
                   hintText: 'New header',
                 ),
               ),
@@ -59,11 +60,12 @@ class _HeaderEditingRowState extends State<HeaderEditingRow> {
             Expanded(
               child: TextField(
                 controller: valueController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   contentPadding: EdgeInsets.all(8),
                   isDense: true,
-                  border: InputBorder.none,
-                  filled: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
                   hintText: 'New value',
                 ),
               ),
