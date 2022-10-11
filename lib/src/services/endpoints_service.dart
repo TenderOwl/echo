@@ -6,6 +6,8 @@ import 'package:isar/isar.dart';
 class EndpointsService extends GetxService {
   List<Collection>? collections;
   List<Endpoint>? endpoints;
+  EndpointsCollection? currentCollection;
+  Endpoint? currentEndpoint;
 
   Isar? isar;
 

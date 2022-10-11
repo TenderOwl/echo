@@ -2,7 +2,7 @@ import 'package:echo/src/app_theme.dart';
 import 'package:echo/src/layouts/app_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'src/services/storage.dart';
+import 'src/services/endpoints_service.dart';
 
 void main() async {
   await initServices();

@@ -1,11 +1,11 @@
 import 'dart:math';
 
-import 'package:echo/src/models/endpoint.dart';
-import 'package:echo/src/models/endpoints_collection.dart';
-import 'package:echo/src/services/storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
+import '../models/endpoint.dart';
+import '../models/endpoints_collection.dart';
+import '../services/endpoints_service.dart';
 
 class SidebarView extends StatefulWidget {
   const SidebarView({super.key});
@@ -64,7 +64,9 @@ class _SidebarViewState extends State<SidebarView> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: MaterialButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      endpointsService.currentCollection = item;
+                    },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(6)),
                     child: Row(
