@@ -23,17 +23,34 @@ class _RequestHeadersViewState extends State<RequestHeadersView> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 16),
-      child: ListView.builder(
-        itemCount: headers.length,
-        itemBuilder: (context, index) {
-          return HeaderEditingRow(
-            index: index,
-            header: headers[index],
-            onAdd: addHeader,
-            onToggle: toggleHeader,
-            onRemove: index > 0 ? removeHeader : null,
-          );
-        },
+      child: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: headers.length + 1,
+              itemBuilder: (context, index) {
+                if (index == headers.length) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextButton(
+                        onPressed: addHeader,
+                        child: const Text(
+                          'Add header',
+                          style: TextStyle(fontWeight: FontWeight.w400),
+                        )),
+                  );
+                } else {
+                  return HeaderEditingRow(
+                    index: index,
+                    header: headers[index],
+                    onToggle: toggleHeader,
+                    onRemove: index > 0 ? removeHeader : null,
+                  );
+                }
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

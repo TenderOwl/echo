@@ -4,7 +4,6 @@ import 'package:line_icons/line_icons.dart';
 class HeaderEditingRow extends StatefulWidget {
   final int index;
   final Map<String, String> header;
-  final VoidCallback onAdd;
   final void Function(int, bool) onToggle;
   final void Function(int)? onRemove;
 
@@ -12,7 +11,6 @@ class HeaderEditingRow extends StatefulWidget {
     super.key,
     required this.index,
     required this.header,
-    required this.onAdd,
     required this.onToggle,
     this.onRemove,
   });
@@ -36,10 +34,14 @@ class _HeaderEditingRowState extends State<HeaderEditingRow> {
         height: 32,
         child: Row(
           children: [
-            IconButton(
-              onPressed: widget.onAdd,
-              icon: const Icon(LineIcons.plusCircle, size: 16),
-              padding: EdgeInsets.zero,
+            Checkbox(
+              value: enabledState,
+              onChanged: (value) {
+                setState(() {
+                  enabledState = !value!;
+                });
+                widget.onToggle(widget.index, enabledState);
+              },
               visualDensity: VisualDensity.compact,
               splashRadius: 12,
             ),
@@ -71,17 +73,6 @@ class _HeaderEditingRowState extends State<HeaderEditingRow> {
               ),
             ),
             const SizedBox(width: 8),
-            Checkbox(
-              value: enabledState,
-              onChanged: (value) {
-                setState(() {
-                  enabledState = !value!;
-                });
-                widget.onToggle(widget.index, enabledState);
-              },
-              visualDensity: VisualDensity.compact,
-              splashRadius: 12,
-            ),
             IconButton(
               onPressed: widget.onRemove != null
                   ? () => widget.onRemove!(widget.index)
