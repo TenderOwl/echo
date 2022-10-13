@@ -1,5 +1,6 @@
 import 'package:echo/src/app_theme.dart';
 import 'package:echo/src/layouts/app_layout.dart';
+import 'package:echo/src/services/http_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'src/services/endpoints_service.dart';
@@ -11,6 +12,7 @@ void main() async {
 
 Future<void> initServices() async {
   await Get.putAsync(() => EndpointsService().init());
+  Get.put(HttpService());
 }
 
 class MyApp extends StatelessWidget {
