@@ -2,6 +2,8 @@ import 'package:echo/src/components/request_headers_view.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 
+import 'code_view.dart';
+
 class RequestView extends StatefulWidget {
   const RequestView({super.key});
 
@@ -134,7 +136,7 @@ class RequestViewState extends State<RequestView> {
           const Expanded(
             child: TabBarView(
               children: [
-                Icon(LineIcons.paragraph),
+                CodeView(sourceCode: '{}'),
                 Icon(LineIcons.lockOpen),
                 Icon(LineIcons.link),
                 RequestHeadersView(),
