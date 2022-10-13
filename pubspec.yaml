@@ -38,6 +38,7 @@ dependencies:
   google_fonts: ^3.0.1
   multi_split_view: ^2.1.0
   flutter_tree: ^2.0.3
+  code_text_field: ^1.0.2
 
   get: ^4.6.5
   isar: ^3.0.2
